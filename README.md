@@ -16,7 +16,7 @@
 `$ git clone https://github.com/NicholasLiem/Tucil2_13521123_13521135.git `
 
 ## **Author**
-William Nixon - 13521123
+William Nixon - 13521123 <br>
 Nicholas Liem - 13521135
 
 ## **Folders and Files Description**
