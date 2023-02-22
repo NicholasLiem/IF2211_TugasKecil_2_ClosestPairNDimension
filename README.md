@@ -14,6 +14,8 @@
 ## **How to Run Program**
 1. Klon repositori ini <br>
 `$ git clone https://github.com/NicholasLiem/Tucil2_13521123_13521135.git `
+2. Jalankan program pada folder ini <br>
+`$ python src`
 
 ## **Author**
 William Nixon - 13521123 <br>

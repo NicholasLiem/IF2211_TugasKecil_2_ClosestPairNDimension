@@ -1,5 +1,4 @@
 import math
-import numpy as np
 
 class Point:
 
@@ -10,13 +9,16 @@ class Point:
         self.coords = args
         self.dimension = len(self.coords)
 
-    def getCoords(self, index):
+    def printSelf(self):
+        return f"Point: {self.coords}"
+
+    def getCoords(self, index) -> float:
         return self.coords[index]
     
-    def getDimension(self):
+    def getDimension(self) -> int:
         return self.dimension
     
-    def distanceTo(self, otherPoint):
+    def distanceTo(self, otherPoint) -> float:
         if self.dimension != otherPoint.getDimension():
             raise ValueError("Dimention has to be same")
         else:
