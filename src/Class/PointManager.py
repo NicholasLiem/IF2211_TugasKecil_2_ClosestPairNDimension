@@ -6,8 +6,10 @@ class PointManager:
 
     def __init__(self):
         self.euclideanDistanceCount = 0
-        self.solPointOne = None
-        self.solPointTwo = None
+        self.bf_solPointOne = None
+        self.bf_solPointTwo = None
+        self.dnc_solPointOne = None
+        self.dnc_solPointTwo = None
         self.points = []
 
     def addPoint(self, newPoint : Point) -> None:
@@ -28,11 +30,20 @@ class PointManager:
         self.euclideanDistanceCount += 1
         return pointOne.distanceTo(pointTwo)
 
-    def getSolPointOne(self) -> Point:
-        return self.solPointOne
+    def getBFSolPointOne(self) -> Point:
+        return self.bf_solPointOne
     
-    def getSolPointTwo(self) -> Point:
-        return self.solPointTwo
+    def getBFSolPointTwo(self) -> Point:
+        return self.bf_solPointTwo
+
+    def getDNCSolPointOne(self) -> Point:
+        return self.dnc_solPointOne
+
+    def getDNCSolPointTwo(self) -> Point:
+        return self.dnc_solPointTwo
+
+    def resetEuclideanCount(self) -> None:
+        self.euclideanDistanceCount = 0
 
     def bruteForceSolution(self) -> float:
         shortestDistance = float("inf")
@@ -40,25 +51,33 @@ class PointManager:
             for j in range(i+1, len(self.points)):
                 distance = self.getDistance(self.points[i], self.points[j])
                 if distance < shortestDistance:
-                    self.solPointOne = self.points[i]
-                    self.solPointTwo = self.points[j]
+                    self.bf_solPointOne = self.points[i]
+                    self.bf_solPointTwo = self.points[j]
                     shortestDistance = distance
         return shortestDistance
 
-    # def splitPoints(self, point: Point):
-    #     return self.points[:point], self.points[point:]
+    def divideAndConquerSolution(self) -> float:
+        # TODO: Perlu diimplementasiin
+        ...
+
+    def splitPoints(self, point: Point):
+        return self.points[:point], self.points[point:]
     
-    # def quickSort(self, left, right):
+    def quickSort(self, left, right):
+        # TODO: Perlu diimplementasiin
+        ...
         
-    # def partition(self, left, right):
+    def partition(self, left, right):
+        # TODO: Perlu diimplementasiin
+        ...
 
     def generateRandomPoints(self, n):
-        # Generate untuk n dimension
+        # TODO: Generate untuk n dimension
         for i in range(n):
             self.addPoint(Point(random.randint(0, 100), random.randint(0, 100), random.randint(0, 100)))
 
     def plot3D(self) -> None:
-        # cek kalau bukan 3 dimensi ga bisa di plot
+        # TODO: Cek kalau bukan 3 dimensi ga bisa di plot
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
         for p in self.points:
