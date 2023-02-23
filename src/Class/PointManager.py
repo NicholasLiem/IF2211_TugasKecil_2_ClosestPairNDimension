@@ -54,6 +54,8 @@ class PointManager:
                     self.bf_solPointOne = self.points[i]
                     self.bf_solPointTwo = self.points[j]
                     shortestDistance = distance
+        self.bf_solPointOne.setSolution()
+        self.bf_solPointTwo.setSolution()
         return shortestDistance
 
     def divideAndConquerSolution(self) -> float:
@@ -77,11 +79,15 @@ class PointManager:
             self.addPoint(Point(random.randint(0, 100), random.randint(0, 100), random.randint(0, 100)))
 
     def plot3D(self) -> None:
-        # TODO: Cek kalau bukan 3 dimensi ga bisa di plot
+        if (self.points[0].getDimension() != 3):
+            raise ValueError("Dimension of points have to be 3")
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
         for p in self.points:
-            ax.scatter([p.getCoords(0)], [p.getCoords(1)], [p.getCoords(2)], c=random.randint(0, 100), marker='o', s=90)
+            if (p.getSolution()):
+                ax.scatter([p.getCoords(0)], [p.getCoords(1)], [p.getCoords(2)], c='red', marker='o', s=90)
+            else:
+                ax.scatter([p.getCoords(0)], [p.getCoords(1)], [p.getCoords(2)], c='blue', marker='o', s=90)
         ax.set_xlabel('X')
         ax.set_ylabel('Y')
         ax.set_zlabel('Z')

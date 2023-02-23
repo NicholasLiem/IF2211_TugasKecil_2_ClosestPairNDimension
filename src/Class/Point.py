@@ -8,6 +8,13 @@ class Point:
     def __init__(self, *args):
         self.coords = args
         self.dimension = len(self.coords)
+        self.solution = False
+
+    def setSolution(self):
+        self.solution = True
+
+    def getSolution(self):
+        return self.solution
 
     def printSelf(self):
         return f"Point: {self.coords}"
@@ -20,7 +27,7 @@ class Point:
     
     def distanceTo(self, otherPoint) -> float:
         if self.dimension != otherPoint.getDimension():
-            raise ValueError("Dimention has to be same")
+            raise ValueError("Dimension has to be same")
         else:
             distance = 0
             for i in range(self.dimension):
