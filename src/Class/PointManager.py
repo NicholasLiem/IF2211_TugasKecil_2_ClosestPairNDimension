@@ -109,7 +109,7 @@ class PointManager:
         for i in range(n):
             points = []
             for elem in range(dim):
-                points.append(random.randint(0, 100))
+                points.append(random.randint(0, 25))
             self.addPoint(Point(points))
 
     def plot(self) -> None:

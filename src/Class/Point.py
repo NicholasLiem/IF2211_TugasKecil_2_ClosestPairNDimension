@@ -41,7 +41,10 @@ class Point:
             ax_ind
         ) == otherPoint.getCoords(ax_ind):
             ax_ind += 1
-        if self.getCoords(ax_ind) < otherPoint.getCoords(ax_ind):
+
+        if ax_ind < self.dimension and self.getCoords(ax_ind) < otherPoint.getCoords(
+            ax_ind
+        ):
             return True
         else:
             return False
