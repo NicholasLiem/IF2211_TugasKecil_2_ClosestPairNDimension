@@ -2,21 +2,22 @@ from Class.Point import Point
 from Class.PointManager import PointManager
 import time
 
-    # Input program:
-    # n
-    # titik yang dibangkitkan secara acak dalam koordinat (x, y, z)
+# Input program:
+# n
+# titik yang dibangkitkan secara acak dalam koordinat (x, y, z)
 
-    # Luaran program:
-    # Sepasang titik yang jaraknya terdekat dan nilai jaraknya
-    # Banyak operasi perhitungan rumus Euclidean
-    # Waktu Riil dalam Detik
-    # Penggambaran grafik
+# Luaran program:
+# Sepasang titik yang jaraknya terdekat dan nilai jaraknya
+# Banyak operasi perhitungan rumus Euclidean
+# Waktu Riil dalam Detik
+# Penggambaran grafik
 
-def main ():
+
+def main():
     pm = PointManager()
     dim = int(input("Masukkan jumlah dimensi: "))
     n = int(input("Masukkan jumlah n: "))
-    
+
     bf_start_time = time.time()
     pm.generateRandomPoints(n, dim)
     pm.mergeSort(pm.getPoints())
@@ -39,20 +40,27 @@ def main ():
     pm.listPoints()
     bf_end_time = time.time()
     bf_elapsed_time = bf_end_time - bf_start_time
-    
+
     bf_shortestPairDistance = pm.bruteForceSolution()
     bf_solPointOne = pm.getBFSolPointOne()
     bf_solPointTwo = pm.getBFSolPointTwo()
-    
-    print("============================================================================================================================================")
-    
-    print(f"[Brute Force] Shortest Pair Distance is {bf_shortestPairDistance:.2f} of point {bf_solPointOne.printSelf()} and {bf_solPointTwo.printSelf()}")
-    print(f"[Brute Force] Euclidean Distance Calculation Count: {pm.getEuclideanDistanceCount()}")
+
+    print(
+        "============================================================================================================================================"
+    )
+
+    print(
+        f"[Brute Force] Shortest Pair Distance is {bf_shortestPairDistance:.2f} of point {bf_solPointOne.printSelf()} and {bf_solPointTwo.printSelf()}"
+    )
+    print(
+        f"[Brute Force] Euclidean Distance Calculation Count: {pm.getEuclideanDistanceCount()}"
+    )
     print(f"[Brute Force] Elapsed time: {bf_elapsed_time:.6f} seconds")
 
-
-    print("============================================================================================================================================")
-    #reset Euclidean Count
+    print(
+        "============================================================================================================================================"
+    )
+    # reset Euclidean Count
     pm.resetEuclideanCount()
 
     dnc_start_time = time.time()
@@ -72,7 +80,8 @@ def main ():
     # print("============================================================================================================================================")
 
     # Ini buat plotting 3D
-    pm.plot3D()
-    
-if __name__ == '__main__':
+    pm.plot()
+
+
+if __name__ == "__main__":
     main()
