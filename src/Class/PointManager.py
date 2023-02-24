@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import random
 import math
+import ast
 
 
 class PointManager:
@@ -15,6 +16,15 @@ class PointManager:
         self.points = []
         self.pivot = None
         self.distance = None
+
+    def readPoints(self, path):
+        self.points = []
+        with open(path, "r") as f:
+            lines = [line.strip("\n") for line in f]
+            for line in lines:
+                pointz = ast.literal_eval(line[7:])
+                pointbaru = Point(pointz)
+                self.points.append(pointbaru)
 
     def setPoints(self, array):
         self.points = array
@@ -179,7 +189,7 @@ class PointManager:
         for i in range(n):
             points = []
             for elem in range(dim):
-                points.append(random.randint(0, 10000) * 0.01)
+                points.append(random.randint(0, 10000))
             self.addPoint(Point(points))
 
     def plot(self) -> None:

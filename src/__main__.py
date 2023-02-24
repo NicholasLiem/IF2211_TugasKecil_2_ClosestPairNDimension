@@ -20,7 +20,9 @@ def main():
 
     pm.generateRandomPoints(n, dim)
     pm.mergeSort(pm.getPoints())
-    # pm.listPoints()
+    ## Ini test case yang salah
+    pm.readPoints("tes.txt")
+    pm.listPoints()
 
     bf_start_time = time.time()
     bf_shortestPairDistance = pm.bruteForceSolution()

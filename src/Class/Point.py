@@ -65,6 +65,6 @@ class Point:
             return False
 
     def nearPivot(self, pivot, minDist):
-        if abs(self.distanceToPivot(pivot)) >= 2 * minDist:
+        if self.distanceToPivot(pivot) >= 2 * minDist:
             return False
         return True
