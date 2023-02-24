@@ -8,7 +8,7 @@
 * [Extras](#meme-section)
 
 ## **Program Description**
-<p>...</p>
+<p>Closest pair problem adalah masalah yang umum ditemukan dalam geometri komputasi yang bertujuan untuk menemukan pasangan titik terdekat dari sekumpulan titik di dalam suatu ruang. Masalah ini memiliki banyak aplikasi praktis, seperti dalam pengolahan gambar, robotika, dan visi komputer. Dalam kasus dua dimensi, pendekatan brute-force memerlukan O(n^2) perbandingan, yang bisa menjadi tidak praktis untuk dataset yang besar. Beberapa algoritma telah dikembangkan untuk menyelesaikan masalah ini dengan lebih efisien, seperti algoritma divide-and-conquer yang memiliki kompleksitas waktu O(n log n). Masalah ini juga dapat diperluas ke ruang dengan dimensi yang lebih tinggi, di mana kompleksitas waktu algoritma meningkat seiring dengan dimensi ruang. Closest pair problem masih menjadi area penelitian aktif dalam geometri komputasi, dengan pengembangan algoritma dan teknik baru untuk meningkatkan efisiensinya dan aplikabilitasnya dalam berbagai bidang.</p>
 
 
 ## **How to Run Program**
