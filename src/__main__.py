@@ -21,7 +21,7 @@ def main():
     bf_start_time = time.time()
     pm.generateRandomPoints(n, dim)
     # 0 sort koordinat x
-    pm.mergeSort(pm.getPoints(), 0)
+    pm.mergeSort(pm.getPoints())
 
     # create some points
     # p1 = Point(1, 2, 3, 999)
