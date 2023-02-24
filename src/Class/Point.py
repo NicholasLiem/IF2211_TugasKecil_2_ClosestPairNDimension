@@ -57,21 +57,12 @@ class Point:
             return False
 
     def nearPivot(self, pivot, minDist):
-        ## TODO, harus bikin pivot jadi bidang (hyperplane), terus cari jarak self ke bidang tsb.
-        ## Gabisa gini kalo > 3D
-        hyperPlaneCoeff = [0 for i in range(self.dimension)]
-        normal[self.dimension - 1] = 1
-        dot_product = -1 * np.dot(pivot.coords, normal)
-        print(self.coords)
-        print(pivot)
-        print(normal)
-        print(dot_product)
-        distance = abs(np.dot(normal, self.coords) + dot_product) / np.linalg.norm(
-            normal
-        )
-        print(distance)
-        if distance > minDist:
-            return False
+        ## TODO: NEED TO TURN PIVOT TO HYPERPLANE
+        ## NEED TO PROJECT SELF TO HYPERPLANE
+        ## NEED TO ENSURE PROJECTED DISTANCE FROM SELF TO HYPERPLANE < THRESHOLD
+        for i in range(self.dimension):
+            if abs(self.getCoords(i) - pivot.getCoords(i)) > 2 * minDist:
+                return False
         return True
 
     def average(self, other):
