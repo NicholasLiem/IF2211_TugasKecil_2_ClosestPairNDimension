@@ -2,6 +2,7 @@ from Class.Point import Point
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import random
+import math
 
 
 class PointManager:
@@ -12,6 +13,11 @@ class PointManager:
         self.dnc_solPointOne = None
         self.dnc_solPointTwo = None
         self.points = []
+        self.pivot = None
+        self.distance = None
+
+    def setPoints(self, array):
+        self.points = array
 
     def getPoints(self):
         return self.points
@@ -50,6 +56,9 @@ class PointManager:
         self.euclideanDistanceCount = 0
 
     def bruteForceSolution(self) -> float:
+        if len(self.points) == 1 or len(self.points) == 0:
+            self.distance = float("inf")
+            return
         shortestDistance = float("inf")
         for i in range(len(self.points)):
             for j in range(i + 1, len(self.points)):
@@ -60,17 +69,78 @@ class PointManager:
                     shortestDistance = distance
         self.bf_solPointOne.setSolution()
         self.bf_solPointTwo.setSolution()
+        self.distance = shortestDistance
         return shortestDistance
 
     def divideAndConquerSolution(self) -> float:
-        # TODO: Perlu diimplementasiin
-        ...
+        # TODO: Perlu diimplementasii
+        # print("Divide" + str(self.points))
+        if len(self.points) == 1:
+            self.distance = float("inf")
+            return
+        elif len(self.points) == 2:
+            self.distance = self.getDistance(self.points[0], self.points[1])
+            self.dnc_solPointOne = self.points[0]
+            self.dnc_solPointTwo = self.points[1]
+            return
+        leftPM, rightPM = self.splitPoints()
+        leftPM.divideAndConquerSolution()
+        rightPM.divideAndConquerSolution()
+        self.conquer(leftPM, rightPM)
+        return self.distance
 
-    def splitPoints(self, point: Point):
-        return self.points[:point], self.points[point:]
+    def conquer(self, leftPM, rightPM):
+        # print("Conquer ", str(leftPM.points), str(rightPM.points))
+        leftDistance = leftPM.distance
+        rightDistance = rightPM.distance
+
+        if leftDistance < rightDistance:
+            self.distance = leftDistance
+            self.dnc_solPointOne = leftPM.dnc_solPointOne
+            self.dnc_solPointTwo = leftPM.dnc_solPointTwo
+        else:
+            self.distance = rightDistance
+            self.dnc_solPointOne = rightPM.dnc_solPointOne
+            self.dnc_solPointTwo = rightPM.dnc_solPointTwo
+
+        minDist = min(leftDistance, rightDistance)
+        pivot = self.pivot
+        # print("Getting delta")
+        pointsLeft = leftPM.getDelta(pivot, minDist)
+        pointsRight = rightPM.getDelta(pivot, minDist)
+        pointCombine = pointsLeft + pointsRight
+        combined = PointManager()
+        combined.setPoints(pointCombine)
+        # print("Combined" + str(combined.points))
+        combined.bruteForceSolution()
+        self.euclideanDistanceCount = (
+            leftPM.euclideanDistanceCount
+            + rightPM.euclideanDistanceCount
+            + combined.euclideanDistanceCount
+        )
+
+        if combined.distance < minDist:
+            self.distance = combined.distance
+            self.dnc_solPointOne = combined.bf_solPointOne
+            self.dnc_solPointTwo = combined.bf_solPointTwo
+
+    def getDelta(self, pivot, minDist):
+        points = []
+        for point in self.points:
+            if point.nearPivot(pivot, minDist):
+                points.append(point)
+        return points
+
+    def splitPoints(self):
+        midPoint = math.floor(len(self.points) / 2)
+        left = PointManager()
+        left.setPoints(self.points[:midPoint])
+        right = PointManager()
+        right.setPoints(self.points[midPoint:])
+        self.pivot = self.points[midPoint]
+        return left, right
 
     def mergeSort(self, pointArray):
-
         # Divide
         if len(pointArray) > 1:
             mid = len(pointArray) // 2
@@ -109,7 +179,7 @@ class PointManager:
         for i in range(n):
             points = []
             for elem in range(dim):
-                points.append(random.randint(0, 25))
+                points.append(random.randint(0, 10000) * 0.01)
             self.addPoint(Point(points))
 
     def plot(self) -> None:

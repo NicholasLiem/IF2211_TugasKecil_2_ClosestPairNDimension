@@ -18,34 +18,16 @@ def main():
     dim = int(input("Masukkan jumlah dimensi: "))
     n = int(input("Masukkan jumlah n: "))
 
-    bf_start_time = time.time()
     pm.generateRandomPoints(n, dim)
-    # 0 sort koordinat x
     pm.mergeSort(pm.getPoints())
+    # pm.listPoints()
 
-    # create some points
-    # p1 = Point(1, 2, 3, 999)
-    # p2 = Point(4, 5, 6, 999)
-    # p3 = Point(7, 8, 9, 7)
-
-    # create a PointManager and add the points to it
-    # pm.addPoint(p1)
-    # pm.addPoint(p2)
-    # pm.addPoint(p3)
-
-    # print(type(p1.coords))
-    # print(p1.getCoords(0))
-    # print(p1.getCoords(1))
-    # print(p1.getCoords(2))
-
-    pm.listPoints()
-    bf_end_time = time.time()
-    bf_elapsed_time = bf_end_time - bf_start_time
-
+    bf_start_time = time.time()
     bf_shortestPairDistance = pm.bruteForceSolution()
     bf_solPointOne = pm.getBFSolPointOne()
     bf_solPointTwo = pm.getBFSolPointTwo()
-
+    bf_end_time = time.time()
+    bf_elapsed_time = bf_end_time - bf_start_time
     print(
         "============================================================================================================================================"
     )
@@ -65,23 +47,30 @@ def main():
     pm.resetEuclideanCount()
 
     dnc_start_time = time.time()
+    dnc_shortestPairDistance = pm.divideAndConquerSolution()
+    dnc_solPointOne = pm.getDNCSolPointOne()
+    dnc_solPointTwo = pm.getDNCSolPointTwo()
+
     dnc_end_time = time.time()
     dnc_elapsed_time = dnc_end_time - dnc_start_time
+    print(
+        "============================================================================================================================================"
+    )
 
-    # dnc_shortestPairDistance = pm.divideAndConquerSolution()
-    # dnc_solPointOne = pm.getDNCSolPointOne()
-    # dnc_solPointTwo = pm.getDNCSolPointTwo()
+    print(
+        f"[Divide and Conquer] Shortest Pair Distance is {dnc_shortestPairDistance:.2f} of point {dnc_solPointOne.printSelf()} and {dnc_solPointTwo.printSelf()}"
+    )
+    print(
+        f"[Divide and Conquer] Euclidean Distance Calculation Count (Divide and Conquer): {pm.getEuclideanDistanceCount()}"
+    )
+    print(f"[Divide and Conquer] Elapsed time: {dnc_elapsed_time:.6f} seconds")
 
-    # print("============================================================================================================================================")
+    print(
+        "============================================================================================================================================"
+    )
 
-    # print(f"[Divide and Conquer] Shortest Pair Distance is {dnc_shortestPairDistance:.2f} of point {dnc_solPointOne.printSelf()} and {dnc_solPointTwo.printSelf()}")
-    # print(f"[Divide and Conquer] Euclidean Distance Calculation Count (Divide and Conquer): {pm.getEuclideanDistanceCount()}")
-    # print(f"[Divide and Conquer] Elapsed time: {bf_elapsed_time:.6f} seconds")
-
-    # print("============================================================================================================================================")
-
-    # Ini buat plotting 3D
-    pm.plot()
+    # # Ini buat plotting 3D
+    # pm.plot()
 
 
 if __name__ == "__main__":
