@@ -57,12 +57,8 @@ class Point:
             return False
 
     def nearPivot(self, pivot, minDist):
-        ## TODO: NEED TO TURN PIVOT TO HYPERPLANE
-        ## NEED TO PROJECT SELF TO HYPERPLANE
-        ## NEED TO ENSURE PROJECTED DISTANCE FROM SELF TO HYPERPLANE < THRESHOLD
-        for i in range(self.dimension):
-            if abs(self.getCoords(i) - pivot.getCoords(i)) > 2 * minDist:
-                return False
+        if abs(self.getCoords(0) - pivot.getCoords(0)) >= minDist:
+            return False
         return True
 
     def average(self, other):

@@ -23,33 +23,9 @@ def main():
         pm = PointManager()
         pm.generateRandomPoints(n, dim)
         pm.mergeSort(pm.getPoints())
-        # # ## Ini test case yang salah
-        pm.readPoints("tes.txt")
+        # # # ## Ini test case yang salah
+        # pm.readPoints("tes.txt")
         pm.listPoints()
-
-        bf_start_time = time.time()
-        bf_shortestPairDistance = pm.bruteForceSolution()
-        bf_solPointOne = pm.getBFSolPointOne()
-        bf_solPointTwo = pm.getBFSolPointTwo()
-        bf_end_time = time.time()
-        bf_elapsed_time = bf_end_time - bf_start_time
-        print(
-            "============================================================================================================================================"
-        )
-
-        print(
-            f"[Brute Force] Shortest Pair Distance is {bf_shortestPairDistance:.2f} of point {bf_solPointOne.printSelf()} and {bf_solPointTwo.printSelf()}"
-        )
-        print(
-            f"[Brute Force] Euclidean Distance Calculation Count: {pm.getEuclideanDistanceCount()}"
-        )
-        print(f"[Brute Force] Elapsed time: {bf_elapsed_time:.6f} seconds")
-
-        print(
-            "============================================================================================================================================"
-        )
-        # reset Euclidean Count
-        pm.resetEuclideanCount()
 
         dnc_start_time = time.time()
         dnc_shortestPairDistance = pm.divideAndConquerSolution()
@@ -73,10 +49,35 @@ def main():
         print(
             "============================================================================================================================================"
         )
+        # reset Euclidean Count
+        pm.resetEuclideanCount()
+
+        bf_start_time = time.time()
+        bf_shortestPairDistance = pm.bruteForceSolution()
+        bf_solPointOne = pm.getBFSolPointOne()
+        bf_solPointTwo = pm.getBFSolPointTwo()
+        bf_end_time = time.time()
+        bf_elapsed_time = bf_end_time - bf_start_time
+        print(
+            "============================================================================================================================================"
+        )
+
+        print(
+            f"[Brute Force] Shortest Pair Distance is {bf_shortestPairDistance:.2f} of point {bf_solPointOne.printSelf()} and {bf_solPointTwo.printSelf()}"
+        )
+        print(
+            f"[Brute Force] Euclidean Distance Calculation Count: {pm.getEuclideanDistanceCount()}"
+        )
+        print(f"[Brute Force] Elapsed time: {bf_elapsed_time:.6f} seconds")
+
+        print(
+            "============================================================================================================================================"
+        )
+        time.sleep(2)
 
         # # Ini buat plotting 3D
         # pm.plot()
-        break
+        # break
 
 
 if __name__ == "__main__":

@@ -83,8 +83,6 @@ class PointManager:
         return shortestDistance
 
     def divideAndConquerSolution(self) -> float:
-        # TODO: Perlu diimplementasii
-        # print("Divide" + str(self.points))
         if len(self.points) == 1:
             self.distance = float("inf")
             return
@@ -97,20 +95,19 @@ class PointManager:
         leftPM.divideAndConquerSolution()
         rightPM.divideAndConquerSolution()
         self.conquer(leftPM, rightPM)
-        # print(self.dnc_solPointOne, self.dnc_solPointTwo)
         return self.distance
 
     def conquer(self, leftPM, rightPM):
-        print("Conquer ", str(leftPM.points), str(rightPM.points))
-        print("\nLEFT & RIGHT SOL\n")
-        print(leftPM.dnc_solPointOne, leftPM.dnc_solPointTwo)
-        print(rightPM.dnc_solPointOne, rightPM.dnc_solPointTwo)
-        print("\n")
+        # print("Conquer ", str(leftPM.points), str(rightPM.points))
+        # print("\nLEFT & RIGHT SOL\n")
+        # print(leftPM.dnc_solPointOne, leftPM.dnc_solPointTwo)
+        # print(rightPM.dnc_solPointOne, rightPM.dnc_solPointTwo)
+        # print("\n")
         leftDistance = leftPM.distance
         rightDistance = rightPM.distance
-        print("\n LEFT & RIGHT DIST\n")
-        print(str(leftDistance) + "---" + str(rightDistance))
-        print("\n")
+        # print("\n LEFT & RIGHT DIST\n")
+        # print(str(leftDistance) + "---" + str(rightDistance))
+        # print("\n")
         if leftDistance < rightDistance:
             self.distance = leftDistance
             self.dnc_solPointOne = leftPM.dnc_solPointOne
@@ -125,25 +122,34 @@ class PointManager:
         # print("Getting delta")
         pointsLeft = leftPM.getDelta(pivot, minDist)
         pointsRight = rightPM.getDelta(pivot, minDist)
-        pointCombine = pointsLeft + pointsRight
-        combined = PointManager()
-        combined.setPoints(pointCombine)
-        print("\n PIVOT " + str(pivot))
-        print("\nCombined Array BF\n" + str(combined.points))
-        combined.bruteForceSolution()
-        self.euclideanDistanceCount = (
-            leftPM.euclideanDistanceCount
-            + rightPM.euclideanDistanceCount
-            + combined.euclideanDistanceCount
+        distance, sol1, sol2 = self.compare(pointsLeft, pointsRight, minDist)
+
+        self.euclideanDistanceCount += (
+            leftPM.euclideanDistanceCount + rightPM.euclideanDistanceCount
         )
 
-        if combined.distance < minDist:
-            self.distance = combined.distance
-            self.dnc_solPointOne = combined.bf_solPointOne
-            self.dnc_solPointTwo = combined.bf_solPointTwo
-        print("\nRESULT ")
-        print(self.distance)
-        print(self.dnc_solPointOne, self.dnc_solPointTwo)
+        if distance < minDist:
+            self.distance = distance
+            self.dnc_solPointOne = sol1
+            self.dnc_solPointTwo = sol2
+        # print("\nRESULT ")
+        # print(self.distance)
+        # print(self.dnc_solPointOne, self.dnc_solPointTwo)
+
+    def compare(self, pointsLeft, pointsRight, minDist):
+        distance = float("inf")
+        sol1 = None
+        sol2 = None
+        for pointL in pointsLeft:
+            for pointR in pointsRight:
+                if abs(pointL.getCoords(0) - pointR.getCoords(0)) > minDist:
+                    continue
+                dist = self.getDistance(pointL, pointR)
+                if dist < distance:
+                    distance = dist
+                    sol1 = pointL
+                    sol2 = pointR
+        return distance, sol1, sol2
 
     def getDelta(self, pivot, minDist):
         points = []
@@ -200,7 +206,7 @@ class PointManager:
         for i in range(n):
             points = []
             for elem in range(dim):
-                points.append(random.randint(0, 100))
+                points.append(random.randint(0, 10000))
             self.addPoint(Point(points))
 
     def plot(self) -> None:
