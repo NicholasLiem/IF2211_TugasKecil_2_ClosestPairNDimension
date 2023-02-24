@@ -69,7 +69,7 @@ class PointManager:
     def splitPoints(self, point: Point):
         return self.points[:point], self.points[point:]
 
-    def mergeSort(self, pointArray):
+    def mergeSortX(self, pointArray):
 
         # Divide
         if len(pointArray) > 1:
@@ -104,6 +104,40 @@ class PointManager:
                 j+= 1
                 k+= 1
 
+    def mergeSortY(self, pointArray):
+
+        # Divide
+        if len(pointArray) > 1:
+            mid = len(pointArray)//2
+            left = pointArray[:mid]
+            right = pointArray[mid:]
+
+            # Conquer
+            self.mergeSort(left)
+            self.mergeSort(right)
+
+            i = j = k = 0 
+            # Merge
+            # Proses mengisi ulang pointArray
+            while (i < len(left)) and (j < len(right)):
+                if left[i].getCoords(1) < right[j].getCoords(1):
+                    pointArray[k] = left[i]
+                    i += 1
+                else:
+                    pointArray[k] = right[j]
+                    j += 1
+                k+= 1
+
+            # Kasus array sisa
+            while i < len(left):
+                pointArray[k] = left[i]
+                i += 1
+                k += 1
+            
+            while j < len(right):
+                pointArray[k] = right[j]
+                j+= 1
+                k+= 1
 
     def generateRandomPoints(self, n, dim):
         # TODO: Generate untuk n dimension
