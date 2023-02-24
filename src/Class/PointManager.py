@@ -73,7 +73,7 @@ class PointManager:
 
         # Divide
         if len(pointArray) > 1:
-            mid = len(pointArray)//2
+            mid = len(pointArray) // 2
             left = pointArray[:mid]
             right = pointArray[mid:]
 
@@ -81,29 +81,28 @@ class PointManager:
             self.mergeSort(left)
             self.mergeSort(right)
 
-            i = j = k = 0 
+            i = j = k = 0
             # Merge
             # Proses mengisi ulang pointArray
             while (i < len(left)) and (j < len(right)):
-                if left[i].getCoords(0) < right[j].getCoords(0):
+                if left[i].lessThan(right[j]):
                     pointArray[k] = left[i]
                     i += 1
                 else:
                     pointArray[k] = right[j]
                     j += 1
-                k+= 1
+                k += 1
 
             # Kasus array sisa
             while i < len(left):
                 pointArray[k] = left[i]
                 i += 1
                 k += 1
-            
+
             while j < len(right):
                 pointArray[k] = right[j]
-                j+= 1
-                k+= 1
-
+                j += 1
+                k += 1
 
     def generateRandomPoints(self, n, dim):
         # TODO: Generate untuk n dimension

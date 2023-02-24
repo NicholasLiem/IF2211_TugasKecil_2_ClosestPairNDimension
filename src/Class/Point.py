@@ -34,3 +34,14 @@ class Point:
             for i in range(self.dimension):
                 distance += (self.getCoords(i) - otherPoint.getCoords(i)) ** 2
             return math.sqrt(distance)
+
+    def lessThan(self, otherPoint) -> bool:
+        ax_ind = 0
+        while ax_ind < self.dimension and self.getCoords(
+            ax_ind
+        ) == otherPoint.getCoords(ax_ind):
+            ax_ind += 1
+        if self.getCoords(ax_ind) < otherPoint.getCoords(ax_ind):
+            return True
+        else:
+            return False
