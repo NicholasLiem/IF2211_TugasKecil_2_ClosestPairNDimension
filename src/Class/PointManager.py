@@ -69,7 +69,7 @@ class PointManager:
     def splitPoints(self, point: Point):
         return self.points[:point], self.points[point:]
 
-    def mergeSort(self, pointArray):
+    def mergeSort(self, pointArray, coord: int):
 
         # Divide
         if len(pointArray) > 1:
