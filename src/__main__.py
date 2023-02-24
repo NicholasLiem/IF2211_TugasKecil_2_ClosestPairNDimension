@@ -15,12 +15,12 @@ import time
 
 def main():
     pm = PointManager()
-    dim = int(input("Masukkan jumlah dimensi: "))
-    n = int(input("Masukkan jumlah n: "))
+    # dim = int(input("Masukkan jumlah dimensi: "))
+    # n = int(input("Masukkan jumlah n: "))
 
-    pm.generateRandomPoints(n, dim)
-    pm.mergeSort(pm.getPoints())
-    ## Ini test case yang salah
+    # pm.generateRandomPoints(n, dim)
+    # pm.mergeSort(pm.getPoints())
+    # ## Ini test case yang salah
     pm.readPoints("tes.txt")
     pm.listPoints()
 

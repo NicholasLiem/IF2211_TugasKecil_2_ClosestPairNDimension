@@ -97,6 +97,7 @@ class PointManager:
         leftPM.divideAndConquerSolution()
         rightPM.divideAndConquerSolution()
         self.conquer(leftPM, rightPM)
+        # print(self.dnc_solPointOne, self.dnc_solPointTwo)
         return self.distance
 
     def conquer(self, leftPM, rightPM):
@@ -116,6 +117,7 @@ class PointManager:
         minDist = min(leftDistance, rightDistance)
         pivot = self.pivot
         # print("Getting delta")
+        # print(pivot)
         pointsLeft = leftPM.getDelta(pivot, minDist)
         pointsRight = rightPM.getDelta(pivot, minDist)
         pointCombine = pointsLeft + pointsRight
@@ -133,6 +135,7 @@ class PointManager:
             self.distance = combined.distance
             self.dnc_solPointOne = combined.bf_solPointOne
             self.dnc_solPointTwo = combined.bf_solPointTwo
+        # print(self.distance)
 
     def getDelta(self, pivot, minDist):
         points = []
@@ -147,7 +150,7 @@ class PointManager:
         left.setPoints(self.points[:midPoint])
         right = PointManager()
         right.setPoints(self.points[midPoint:])
-        self.pivot = self.points[midPoint]
+        self.pivot = self.points[midPoint - 1].average(self.points[midPoint])
         return left, right
 
     def mergeSort(self, pointArray):

@@ -65,6 +65,12 @@ class Point:
             return False
 
     def nearPivot(self, pivot, minDist):
-        if self.distanceToPivot(pivot) >= 2 * minDist:
+        if self.distanceToPivot(pivot) > 2 * minDist:
             return False
         return True
+
+    def average(self, other):
+        coordinates = []
+        for i in range(len(self.coords)):
+            coordinates.append((self.coords[i] + other.coords[i]) / 2)
+        return Point(coordinates)
