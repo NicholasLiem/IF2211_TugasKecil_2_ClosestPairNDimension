@@ -14,10 +14,12 @@ import time
 
 def main ():
     pm = PointManager()
+    dim = int(input("Masukkan jumlah dimensi: "))
     n = int(input("Masukkan jumlah n: "))
     
     bf_start_time = time.time()
-    pm.generateRandomPoints(n)
+    pm.generateRandomPoints(n, dim)
+    pm.mergeSort(pm.getPoints())
 
     # create some points
     # p1 = Point(1, 2, 3, 999)
