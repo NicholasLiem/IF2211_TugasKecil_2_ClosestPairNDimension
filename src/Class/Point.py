@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 
 class Point:
@@ -41,15 +42,6 @@ class Point:
                 distance += (self.getCoords(i) - otherPoint.getCoords(i)) ** 2
             return math.sqrt(distance)
 
-    def distanceToPivot(self, otherPoint) -> float:
-        if self.dimension != otherPoint.getDimension():
-            raise ValueError("Dimension has to be same")
-        else:
-            distance = 0
-            for i in range(self.dimension - 1):
-                distance += (self.getCoords(i) - otherPoint.getCoords(i)) ** 2
-            return math.sqrt(distance)
-
     def lessThan(self, otherPoint) -> bool:
         ax_ind = 0
         while ax_ind < self.dimension and self.getCoords(
@@ -65,7 +57,20 @@ class Point:
             return False
 
     def nearPivot(self, pivot, minDist):
-        if self.distanceToPivot(pivot) > 2 * minDist:
+        ## TODO, harus bikin pivot jadi bidang (hyperplane), terus cari jarak self ke bidang tsb.
+        ## Gabisa gini kalo > 3D
+        hyperPlaneCoeff = [0 for i in range(self.dimension)]
+        normal[self.dimension - 1] = 1
+        dot_product = -1 * np.dot(pivot.coords, normal)
+        print(self.coords)
+        print(pivot)
+        print(normal)
+        print(dot_product)
+        distance = abs(np.dot(normal, self.coords) + dot_product) / np.linalg.norm(
+            normal
+        )
+        print(distance)
+        if distance > minDist:
             return False
         return True
 

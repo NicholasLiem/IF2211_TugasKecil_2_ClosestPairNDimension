@@ -101,10 +101,16 @@ class PointManager:
         return self.distance
 
     def conquer(self, leftPM, rightPM):
-        # print("Conquer ", str(leftPM.points), str(rightPM.points))
+        print("Conquer ", str(leftPM.points), str(rightPM.points))
+        print("\nLEFT & RIGHT SOL\n")
+        print(leftPM.dnc_solPointOne, leftPM.dnc_solPointTwo)
+        print(rightPM.dnc_solPointOne, rightPM.dnc_solPointTwo)
+        print("\n")
         leftDistance = leftPM.distance
         rightDistance = rightPM.distance
-
+        print("\n LEFT & RIGHT DIST\n")
+        print(str(leftDistance) + "---" + str(rightDistance))
+        print("\n")
         if leftDistance < rightDistance:
             self.distance = leftDistance
             self.dnc_solPointOne = leftPM.dnc_solPointOne
@@ -117,13 +123,13 @@ class PointManager:
         minDist = min(leftDistance, rightDistance)
         pivot = self.pivot
         # print("Getting delta")
-        # print(pivot)
         pointsLeft = leftPM.getDelta(pivot, minDist)
         pointsRight = rightPM.getDelta(pivot, minDist)
         pointCombine = pointsLeft + pointsRight
         combined = PointManager()
         combined.setPoints(pointCombine)
-        # print("Combined" + str(combined.points))
+        print("\n PIVOT " + str(pivot))
+        print("\nCombined Array BF\n" + str(combined.points))
         combined.bruteForceSolution()
         self.euclideanDistanceCount = (
             leftPM.euclideanDistanceCount
@@ -135,7 +141,9 @@ class PointManager:
             self.distance = combined.distance
             self.dnc_solPointOne = combined.bf_solPointOne
             self.dnc_solPointTwo = combined.bf_solPointTwo
-        # print(self.distance)
+        print("\nRESULT ")
+        print(self.distance)
+        print(self.dnc_solPointOne, self.dnc_solPointTwo)
 
     def getDelta(self, pivot, minDist):
         points = []
@@ -192,7 +200,7 @@ class PointManager:
         for i in range(n):
             points = []
             for elem in range(dim):
-                points.append(random.randint(0, 10000))
+                points.append(random.randint(0, 100))
             self.addPoint(Point(points))
 
     def plot(self) -> None:
