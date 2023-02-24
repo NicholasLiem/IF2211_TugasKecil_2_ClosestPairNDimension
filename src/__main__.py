@@ -76,7 +76,7 @@ def main():
         time.sleep(2)
 
         # # Ini buat plotting 3D
-        # pm.plot()
+        pm.plot()
         # break
 
 
