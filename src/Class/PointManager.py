@@ -142,7 +142,7 @@ class PointManager:
         sol2 = None
         for pointL in pointsLeft:
             for pointR in pointsRight:
-                if abs(pointL.getCoords(0) - pointR.getCoords(0)) > minDist:
+                if not pointL.scanNear(pointR, minDist):
                     continue
                 dist = self.getDistance(pointL, pointR)
                 if dist < distance:

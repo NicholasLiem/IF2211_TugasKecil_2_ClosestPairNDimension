@@ -24,6 +24,12 @@ class Point:
     def getSolution(self):
         return self.solution
 
+    def scanNear(self, other, minDist):
+        for ind in range(len(self.coords)):
+            if abs(self.getCoords(ind) - other.getCoords(ind)) > minDist:
+                return False
+        return True
+
     def printSelf(self):
         return f"Point: {self.coords}"
 
