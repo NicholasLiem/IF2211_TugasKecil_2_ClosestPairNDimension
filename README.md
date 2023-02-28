@@ -1,4 +1,4 @@
-<h1> <b> IF2211 Tugas Kecil 2 Strategi Algoritma - Mencari Pasangan Titik Terdekat 3D dengan Algoritma Divide and Conquer </b> </h1>
+<h1> <b> IF2211 Tugas Kecil 2 Strategi Algoritma - Mencari Pasangan Titik Terdekat N-Dimensi dengan Algoritma Divide and Conquer </b> </h1>
 
 ## **Daftar Isi**
 * [Deskripsi Program](#deskripsi-program)
