@@ -1,31 +1,21 @@
 from Class.Point import Point
 from Class.PointManager import PointManager
 import time
-
-# Input program:
-# n
-# titik yang dibangkitkan secara acak dalam koordinat (x, y, z)
-
-# Luaran program:
-# Sepasang titik yang jaraknya terdekat dan nilai jaraknya
-# Banyak operasi perhitungan rumus Euclidean
-# Waktu Riil dalam Detik
-# Penggambaran grafik
-
+import sys
 
 def main():
     pm = PointManager()
-    dim = int(input("Masukkan jumlah dimensi: "))
-    n = int(input("Masukkan jumlah n: "))
-    bf_shortestPairDistance = -1
-    dnc_shortestPairDistance = -1
-    # while bf_shortestPairDistance == dnc_shortestPairDistance:
-    pm = PointManager()
-    pm.generateRandomPoints(n, dim)
+    inputFile = input("Apakah ingin membaca poin dari file? (Y/N)\n")
+    if(inputFile == "Y" or inputFile == "y" or inputFile == "N" or inputFile == "n"):
+        fileName = input("Input nama file (co: tes.txt): ")
+        path = sys.path[0] + "\\Input\\" + fileName
+        pm.readPoints(path)
+    else:
+        dim = int(input("Insert the number of dimensions (dim): "))
+        n = int(input("Insert the number of points (n): "))
+        pm.generateRandomPoints(n, dim)
+
     pm.mergeSort(pm.getPoints())
-    # # # ## Ini test case yang salah
-    # pm.readPoints("tes.txt")
-    # pm.listPoints()
 
     dnc_start_time = time.time()
     dnc_shortestPairDistance = pm.divideAndConquerSolution()
@@ -76,10 +66,18 @@ def main():
     )
     time.sleep(2)
 
-    # # Ini buat plotting 3D
-    # pm.plot()
-    # break
-
+    answer = ''
+    flag = False
+    while(not flag):
+        answer = input("Do you want to plot the points? Y/N\n")
+        if (answer == "Y" or answer == "y" or answer == "N" or answer == "n"):
+            flag = not flag
+        
+    if (answer == "Y" or answer == "y"):
+        pm.plot()
+    else:
+        print("Program Exit")
+        exit(0)
 
 if __name__ == "__main__":
     main()
