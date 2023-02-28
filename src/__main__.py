@@ -103,7 +103,7 @@ def main():
 
     answer_save = input("Want to save file? Y/N \n")
     if answer_save.lower() == "y":
-        file_name = "Output/log_" + str(time.time())
+        file_name = sys.path[0] + "/" + "Output/log_" + str(time.time())
         f = open(file_name, "w+")
         f.write(
             "============================================================================================================================================\n"
