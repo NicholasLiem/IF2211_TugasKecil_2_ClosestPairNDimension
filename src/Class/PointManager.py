@@ -5,6 +5,7 @@ import random
 import math
 import ast
 
+
 class PointManager:
     def __init__(self):
         self.euclideanDistanceCount = 0
@@ -21,9 +22,12 @@ class PointManager:
         with open(path, "r") as f:
             lines = [line.strip("\n") for line in f]
             for line in lines:
-                pointz = ast.literal_eval(line[7:])
+                pointz = ast.literal_eval(line)
                 pointbaru = Point(pointz)
                 self.points.append(pointbaru)
+        if len(self.points) == 0 or len(self.points) == 1:
+            print("Invalid number of point read!")
+            exit(0)
 
     def setPoints(self, array):
         self.points = array
@@ -153,7 +157,7 @@ class PointManager:
         right.setPoints(self.points[midPoint:])
         self.pivot = self.points[midPoint - 1].average(self.points[midPoint])
         return left, right
-    
+
     def mergeSort(self, pointArray):
         # Divide
         if len(pointArray) > 1:
