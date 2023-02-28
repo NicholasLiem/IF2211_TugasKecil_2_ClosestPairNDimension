@@ -5,7 +5,6 @@ import random
 import math
 import ast
 
-
 class PointManager:
     def __init__(self):
         self.euclideanDistanceCount = 0
@@ -166,7 +165,7 @@ class PointManager:
         right.setPoints(self.points[midPoint:])
         self.pivot = self.points[midPoint - 1].average(self.points[midPoint])
         return left, right
-
+    
     def mergeSort(self, pointArray):
         # Divide
         if len(pointArray) > 1:
