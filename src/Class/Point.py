@@ -1,11 +1,6 @@
 import math
-import numpy as np
-
 
 class Point:
-
-    # coords adalah tuple yang isinya value koordinatnya
-    # dimension adalah berapa jumlah dimensinya
 
     def __init__(self, *args):
         self.coords = args[0]

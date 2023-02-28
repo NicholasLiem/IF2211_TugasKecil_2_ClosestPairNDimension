@@ -97,16 +97,8 @@ class PointManager:
         return self.distance
 
     def conquer(self, leftPM, rightPM):
-        # print("Conquer ", str(leftPM.points), str(rightPM.points))
-        # print("\nLEFT & RIGHT SOL\n")
-        # print(leftPM.dnc_solPointOne, leftPM.dnc_solPointTwo)
-        # print(rightPM.dnc_solPointOne, rightPM.dnc_solPointTwo)
-        # print("\n")
         leftDistance = leftPM.distance
         rightDistance = rightPM.distance
-        # print("\n LEFT & RIGHT DIST\n")
-        # print(str(leftDistance) + "---" + str(rightDistance))
-        # print("\n")
         if leftDistance < rightDistance:
             self.distance = leftDistance
             self.dnc_solPointOne = leftPM.dnc_solPointOne
@@ -118,7 +110,6 @@ class PointManager:
 
         minDist = min(leftDistance, rightDistance)
         pivot = self.pivot
-        # print("Getting delta")
         pointsLeft = leftPM.getDelta(pivot, minDist)
         pointsRight = rightPM.getDelta(pivot, minDist)
         distance, sol1, sol2 = self.compare(pointsLeft, pointsRight, minDist)
@@ -131,9 +122,6 @@ class PointManager:
             self.distance = distance
             self.dnc_solPointOne = sol1
             self.dnc_solPointTwo = sol2
-        # print("\nRESULT ")
-        # print(self.distance)
-        # print(self.dnc_solPointOne, self.dnc_solPointTwo)
 
     def compare(self, pointsLeft, pointsRight, minDist):
         distance = float("inf")
