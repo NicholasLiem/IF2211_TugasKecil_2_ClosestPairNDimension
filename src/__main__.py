@@ -13,6 +13,9 @@ def main():
     else:
         dim = int(input("Insert the number of dimensions (dim): "))
         n = int(input("Insert the number of points (n): "))
+        while(n < 1 or dim < 1):
+            dim = int(input("Insert the number of dimensions (dim): "))
+            n = int(input("Insert the number of points (n): "))
         pm.generateRandomPoints(n, dim)
 
     pm.mergeSort(pm.getPoints())
