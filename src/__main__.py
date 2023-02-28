@@ -3,19 +3,20 @@ from Class.PointManager import PointManager
 import time
 import sys
 
+
 def main():
     pm = PointManager()
     inputFile = input("Apakah ingin membaca poin dari file? (Y/N)\n")
-    if(inputFile == "Y" or inputFile == "y"):
+    if inputFile == "Y" or inputFile == "y":
         fileName = input("Input nama file (co: tes.txt): ")
         path = sys.path[0] + "\\Input\\" + fileName
         pm.readPoints(path)
     else:
-        dim = int(input("Insert the number of dimensions (dim): "))
-        n = int(input("Insert the number of points (n): "))
-        while(n < 1 or dim < 1):
-            dim = int(input("Insert the number of dimensions (dim): "))
-            n = int(input("Insert the number of points (n): "))
+        dim = int(input("Insert the number of dimensions (dim) (>= 1): "))
+        n = int(input("Insert the number of points (n): (>= 2): "))
+        while n <= 1 or dim < 1:
+            dim = int(input("Insert the number of dimensions (dim) (>= 1): "))
+            n = int(input("Insert the number of points (n) (>= 2): "))
         pm.generateRandomPoints(n, dim)
 
     pm.mergeSort(pm.getPoints())
@@ -61,26 +62,26 @@ def main():
     print(
         f"[Brute Force] Euclidean Distance Calculation Count: {pm.getEuclideanDistanceCount()}"
     )
-    print(
-        f"[Brute Force] Elapsed time: {bf_elapsed_time:.6f} seconds")
+    print(f"[Brute Force] Elapsed time: {bf_elapsed_time:.6f} seconds")
 
     print(
         "============================================================================================================================================"
     )
     time.sleep(2)
 
-    answer = ''
+    answer = ""
     flag = False
-    while(not flag):
+    while not flag:
         answer = input("Do you want to plot the points? Y/N\n")
-        if (answer == "Y" or answer == "y" or answer == "N" or answer == "n"):
+        if answer == "Y" or answer == "y" or answer == "N" or answer == "n":
             flag = not flag
-        
-    if (answer == "Y" or answer == "y"):
+
+    if answer == "Y" or answer == "y":
         pm.plot()
     else:
         print("Program Exit")
         exit(0)
+
 
 if __name__ == "__main__":
     main()

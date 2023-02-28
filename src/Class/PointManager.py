@@ -84,12 +84,12 @@ class PointManager:
     def divideAndConquerSolution(self) -> float:
         if len(self.points) == 1:
             self.distance = float("inf")
-            return
+            return self.distance
         elif len(self.points) == 2:
             self.distance = self.getDistance(self.points[0], self.points[1])
             self.dnc_solPointOne = self.points[0]
             self.dnc_solPointTwo = self.points[1]
-            return
+            return self.distance
         leftPM, rightPM = self.splitPoints()
         leftPM.divideAndConquerSolution()
         rightPM.divideAndConquerSolution()
