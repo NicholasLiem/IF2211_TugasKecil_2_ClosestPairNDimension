@@ -18,6 +18,8 @@
 `python -m pip install -U pip`
 3. Matplotlib <br>
 `python -m pip install -U matplotlib`
+4. Colorama <br>
+`python -m pip install -U colorama`
 
 ## **Cara Menjalankan Program**
 1. Klon repositori ini <br>
