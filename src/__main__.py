@@ -6,7 +6,7 @@ import sys
 def main():
     pm = PointManager()
     inputFile = input("Apakah ingin membaca poin dari file? (Y/N)\n")
-    if(inputFile == "Y" or inputFile == "y" or inputFile == "N" or inputFile == "n"):
+    if(inputFile == "Y" or inputFile == "y"):
         fileName = input("Input nama file (co: tes.txt): ")
         path = sys.path[0] + "\\Input\\" + fileName
         pm.readPoints(path)
